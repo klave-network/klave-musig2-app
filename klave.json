@@ -5,10 +5,10 @@
     ],
     "applications": [
       {
-        "name": "musig2-app",
+        "name": "klave-musig2-app",
         "description": "A Musig2 aggregator with a Musig2 signer",
         "version": "0.1.0",
-        "rootDir": "/apps/musig2-app"
+        "rootDir": "/apps/klave-musig2-app"
       }
     ]
   }
