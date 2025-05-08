@@ -123,14 +123,14 @@ pub fn initiate_musig_context(cmd: String) {
 
     //associate musig session id with the sender id
     let mut musig_user_sessions : Vec<String> = vec![];
-    match klave::ledger::get_table("musig_user_sessions_tab").get_json(&sender_id) {
+    match klave::ledger::get_table("musig_user_agg_sessions_tab").get_json(&sender_id) {
         Ok(vec) => {
             musig_user_sessions = vec;
         }
         _ => {}
     }
     musig_user_sessions.push(musig_id.clone());
-    match klave::ledger::get_table("musig_user_sessions_tab").set_json(&sender_id, &musig_user_sessions) {
+    match klave::ledger::get_table("musig_user_agg_sessions_tab").set_json(&sender_id, &musig_user_sessions) {
         Err(e) => {
             klave::notifier::send_string(&format!("failed to write to ledger: '{}'", e));
             // sdk::cancel_transaction();
@@ -149,7 +149,7 @@ pub fn load_musig_agg_session_ids(_cmd: String) {
         return
     };
     let mut musig_user_sessions : Vec<String> = vec![];
-    match klave::ledger::get_table("musig_user_sessions_tab").get_json(&sender_id) {
+    match klave::ledger::get_table("musig_user_agg_sessions_tab").get_json(&sender_id) {
         Ok(vec) => {
             musig_user_sessions = vec;
         }
